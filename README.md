@@ -1,4 +1,4 @@
-# Melanoma scRNA-seq reanalysis and trajectory modeling
+# scRNA-seq pipeline
 
 _by Younginn Park_
 
