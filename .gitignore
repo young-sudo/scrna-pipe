@@ -1,2 +1,20 @@
-# results folder
+# Nextflow
+.nextflow/
+work/
+
+# Docker / Singularity
+*.tar
+*.tar.gz
+*.sif
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# IDE / OS
+.vscode/
+.DS_Store
+
+# Results folder
 results/
