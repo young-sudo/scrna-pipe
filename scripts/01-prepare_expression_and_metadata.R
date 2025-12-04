@@ -3,12 +3,25 @@
 # 01-prepare_expression_and_metadata.R
 library(dplyr)
 library(Seurat)
+library(optparse)
 
-infile <- "data/processed/raw_tirosh_table.rds"
+infile <- "results/processed/raw_table.rds"
+out_dir <- "results/processed/expressions"
+
+option_list <- list(
+  make_option(c("-i", "--input"), type="character", default=infile, help="Input file"),
+  make_option(c("-o", "--outdir"), type="character", default=out_dir, help="Output directory")
+)
+
+opt_parser <- OptionParser(option_list=option_list)
+opt <- parse_args(opt_parser)
+infile <- opt$input
+out_dir <- opt$outdir
+dir.create(out_dir, recursive = TRUE, showWarnings = FALSE)
+
 raw <- readRDS(infile)
 
 # The input file appears to have 3 header rows and then gene x cell matrix
-# Adjust according to your file structure (this follows your Rmd)
 meta_rows <- raw[1:3, , drop = FALSE]
 gene_table <- raw[-(1:3), , drop = FALSE]
 
@@ -35,6 +48,7 @@ if (length(incorrect_entries) > 0) {
   meta <- meta[setdiff(rownames(meta), names(incorrect_entries)), , drop = FALSE]
 }
 
+outfile <- file.path(out_dir, "expr_and_meta.rds")
 # Save expression and metadata
-saveRDS(list(counts = expr_mat, meta = meta), file = "data/processed/expr_and_meta.rds")
-message("Saved expression and metadata to data/processed/expr_and_meta.rds")
+saveRDS(list(counts = expr_mat, meta = meta), file = outfile)
+message("Saved expression and metadata to ", outfile)

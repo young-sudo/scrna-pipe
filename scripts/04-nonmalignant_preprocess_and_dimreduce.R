@@ -2,9 +2,23 @@
 
 # 04-nonmalignant_preprocess_and_dimreduce.R
 library(Seurat)
+library(ggplot2)
+library(optparse)
 
-objs <- readRDS("data/processed/seurat_split.rds")
-non_malignant <- objs$non_malignant
+non_malignant <- readRDS("results/non-malignant/seurat/non_malignant_seurat.rds")
+out_dir <- "results/non_malignant/dimreduce"
+
+option_list <- list(
+  make_option(c("-i", "--input"), type="character", default=non_malignant, help="Input file"),
+  make_option(c("-o", "--outdir"), type="character", default=out_dir, help="Output directory")
+)
+
+opt_parser <- OptionParser(option_list=option_list)
+opt <- parse_args(opt_parser)
+non_malignant <- opt$input
+out_dir <- opt$outdir
+dir.create(out_dir, recursive = TRUE, showWarnings = FALSE)
+
 
 # Annotate cell types from the metadata mapping used in the Rmd
 cluster_names <- c("unresolved", "T-cells", "B-cells", "Macrophages", "Endothelial", "CAF", "NK")
@@ -29,5 +43,73 @@ non_malignant <- RunTSNE(non_malignant, dims = 1:15, seed.use = 3)
 set.seed(1)
 non_malignant <- RunUMAP(non_malignant, dims = 1:15, seed.use = 1, n.neighbors = 10)
 
-saveRDS(non_malignant, file = "data/processed/non_malignant_processed.rds")
-message("Saved non-malignant processed object to data/processed/non_malignant_processed.rds")
+
+# Plot and save figures
+# Create figures directory
+fig_dir <- file.path(out_dir, "figures")
+if (!dir.exists(fig_dir)) dir.create(fig_dir, recursive = TRUE)
+
+# 1. t-SNE colored by cell type
+tsne_celltype <- DimPlot(
+  non_malignant,
+  reduction = "tsne",
+  group.by = "cell_type",
+  pt.size = 1.5,
+  label = FALSE
+) + ggtitle(NULL)
+
+ggsave(
+  filename = file.path(fig_dir, "tsne_cell_type.png"),
+  plot = tsne_celltype,
+  width = 6, height = 5, dpi = 300
+)
+
+# 2. t-SNE colored by tumor ID
+tsne_tumor <- DimPlot(
+  non_malignant,
+  reduction = "tsne",
+  group.by = "tumor_id",
+  pt.size = 1.5,
+  label = FALSE
+) + ggtitle(NULL)
+
+ggsave(
+  filename = file.path(fig_dir, "tsne_tumor_id.png"),
+  plot = tsne_tumor,
+  width = 6, height = 5, dpi = 300
+)
+
+# 3. UMAP colored by cell type
+umap_celltype <- DimPlot(
+  non_malignant,
+  reduction = "umap",
+  group.by = "cell_type",
+  pt.size = 1.5,
+  label = FALSE
+) + ggtitle(NULL)
+
+ggsave(
+  filename = file.path(fig_dir, "umap_cell_type.png"),
+  plot = umap_celltype,
+  width = 6, height = 5, dpi = 300
+)
+
+# 4. UMAP colored by tumor ID
+umap_tumor <- DimPlot(
+  non_malignant,
+  reduction = "umap",
+  group.by = "tumor_id",
+  pt.size = 1.5,
+  label = FALSE
+) + ggtitle(NULL)
+
+ggsave(
+  filename = file.path(fig_dir, "umap_tumor_id.png"),
+  plot = umap_tumor,
+  width = 6, height = 5, dpi = 300
+)
+
+
+outfile <- file.path(out_dir, "non_malignant_processed.rds")
+saveRDS(non_malignant, file = outfile)
+message("Saved non-malignant processed object to ", outfile)
