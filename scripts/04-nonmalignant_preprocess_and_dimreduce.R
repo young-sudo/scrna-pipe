@@ -34,6 +34,7 @@ non_malignant <- RunPCA(non_malignant, features = all.genes)
 
 # Variable features + PCA using variable features
 non_malignant <- FindVariableFeatures(non_malignant, selection.method = "vst", nfeatures = 1000)
+
 non_malignant <- ScaleData(non_malignant)
 non_malignant <- RunPCA(non_malignant, features = VariableFeatures(object = non_malignant))
 
@@ -49,7 +50,21 @@ non_malignant <- RunUMAP(non_malignant, dims = 1:15, seed.use = 1, n.neighbors =
 fig_dir <- file.path(out_dir, "figures")
 if (!dir.exists(fig_dir)) dir.create(fig_dir, recursive = TRUE)
 
-# 1. t-SNE colored by cell type
+# Variable features plot
+# Identify the 10 most highly variable genes
+top10 <- head(VariableFeatures(non_malignant), 10)
+
+# plot variable features with and without labels
+plot1 <- VariableFeaturePlot(non_malignant)
+plot2 <- LabelPoints(plot = plot1, points = top10, repel = TRUE)
+
+ggsave(
+  filename = file.path(out_dir, "variable_features.png"),
+  plot = plot2,
+  width = 8, height = 6, dpi = 300
+)
+
+# t-SNE colored by cell type
 tsne_celltype <- DimPlot(
   non_malignant,
   reduction = "tsne",
@@ -64,7 +79,7 @@ ggsave(
   width = 6, height = 5, dpi = 300
 )
 
-# 2. t-SNE colored by tumor ID
+# t-SNE colored by tumor ID
 tsne_tumor <- DimPlot(
   non_malignant,
   reduction = "tsne",
@@ -79,7 +94,7 @@ ggsave(
   width = 6, height = 5, dpi = 300
 )
 
-# 3. UMAP colored by cell type
+# UMAP colored by cell type
 umap_celltype <- DimPlot(
   non_malignant,
   reduction = "umap",
@@ -94,7 +109,7 @@ ggsave(
   width = 6, height = 5, dpi = 300
 )
 
-# 4. UMAP colored by tumor ID
+# UMAP colored by tumor ID
 umap_tumor <- DimPlot(
   non_malignant,
   reduction = "umap",
