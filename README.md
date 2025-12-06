@@ -23,7 +23,7 @@ Reference article: Tirosh et al., 2016 - Dissecting the multicellular ecosystem 
 <p align="center">
   <img src="https://raw.githubusercontent.com/young-sudo/scrna-pipe/main/figures/plot_vf-top10.png" width="300"/>
   <br>
-  <small>Sample output figures from the pipeline. Top Left: Clustered and annotated malignant tumor cells. Top Right: Clustered and annotated non-malignant cells. Bottom: Plot for variable features with top 10 labeled.</small>
+  <small>Output figures from the pipeline.<br>Top Left: Clustered and annotated malignant tumor cells. Top Right: Clustered and annotated non-malignant cells. Bottom: Plot for variable features with top 10 labeled.</small>
 </p>
 
 ---
@@ -121,12 +121,11 @@ This repository contains a modular, reproducible workflow for analyzing melanoma
 
 5. **Non-malignant cells preprocessing and dimensionality reduction** (`04-nonmalignant_preprocess_and_dimreduce.R`):
 
-   * Normalize, scale, identify variable genes.
+   * Normalize, scale, identify variable genes using Variance Stabilizing Transform (VST).
    * PCA, t-SNE, and UMAP dimensionality reduction.
 
 6. **Non-malignant clustering and visualization** (`05-nonmalignant_clustering_and_qc_plots.R`):
 
-   * Construct SNN graph and find clusters.
    * Visualize clusters and tumor ID distributions.
    * Save diagnostic plots to `figures/`.
 
