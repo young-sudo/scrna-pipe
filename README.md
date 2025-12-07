@@ -7,7 +7,8 @@ _by Younginn Park_
 ![Monocle3](https://img.shields.io/badge/Monocle3-2c3e50?style=for-the-badge&logo=R&logoColor=white)
 ![Nextflow](https://img.shields.io/badge/Nextflow-DSL2-23CC85?style=for-the-badge&logo=nextflow&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
-![Apptainer](https://img.shields.io/badge/Apptainer-2E6CE6?style=for-the-badge&logo=linuxcontainers&logoColor=white) 
+![Apptainer](https://img.shields.io/badge/Apptainer-2E6CE6?style=for-the-badge&logo=linuxcontainers&logoColor=white)
+![Slurm](https://img.shields.io/badge/Slurm-42A5F5?style=for-the-badge&logo=serverfault&logoColor=white)
 
 Reproducible melanoma scRNA-seq pipeline combining Tirosh et al. reanalysis with extended trajectory and pseudotime modeling using Seurat and Monocle3.
 
@@ -57,32 +58,22 @@ You can then run the pipeline using your local image:
 nextflow run main.nf -profile docker --docker.image r-scrna-pipe:latest
 ```
 
-
 ## Run the entire workflow
 
-**Docker (or Singularity/Apptainer fallback on HPC):**
 ```bash
+# Docker (or Singularity/Apptainer fallback on HPC)
 nextflow run main.nf -profile docker
-```
 
-Singularity/Apptainer directly:
-
-```bash
+# Singularity/Apptainer directly
 nextflow run main.nf -profile apptainer
-```
 
-Conda/local environment:
-```bash
+# Conda/local environment
 nextflow run main.nf -profile conda
-```
 
-Local execution without containers:
-```bash
+# Local execution without containers
 nextflow run main.nf -profile standard
-```
 
-HPC execution with slurm:
-```bash
+# HPC execution with slurm
 nextflow run main.nf -profile slurm
 ```
 
