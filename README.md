@@ -27,6 +27,8 @@ Reference article: Tirosh et al., 2016 - Dissecting the multicellular ecosystem 
   <small>Output figures from the pipeline.<br>Top Left: Clustered and annotated malignant tumor cells. Top Right: Clustered and annotated non-malignant cells. Bottom: Plot for variable features with top 10 labeled.</small>
 </p>
 
+>Full methods, results, and discussion in the project report in `docs/`
+
 ---
 
 # Usage
