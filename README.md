@@ -81,6 +81,11 @@ Local execution without containers:
 nextflow run main.nf -profile standard
 ```
 
+HPC execution with slurm:
+```bash
+nextflow run main.nf -profile slurm
+```
+
 ## Pass input parameters
 
 You can override default parameters:
