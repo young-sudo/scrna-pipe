@@ -1,4 +1,5 @@
 FROM rocker/r-ver:4.4.0
+# https://github.com/rocker-org/rocker
 
 # system libraries for Seurat and monocle3
 RUN apt-get update && apt-get install -y \
