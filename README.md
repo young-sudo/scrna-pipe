@@ -61,10 +61,10 @@ nextflow run main.nf -profile docker --docker.image r-scrna-pipe:latest
 ## Run the entire workflow
 
 ```bash
-# Docker (or Singularity/Apptainer fallback on HPC)
+# Docker
 nextflow run main.nf -profile docker
 
-# Singularity/Apptainer directly
+# Singularity/Apptainer (for HPC)
 nextflow run main.nf -profile apptainer
 
 # Conda/local environment
