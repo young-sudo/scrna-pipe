@@ -29,6 +29,13 @@ Full project rationale, methods description, results, and discussion in the **pr
   <small>Output figures from the pipeline.<br>Top Left: Clustered and annotated malignant tumor cells. Top Right: Clustered and annotated non-malignant cells. Bottom: Plot for variable features with top 10 labeled.</small>
 </p>
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/young-sudo/scrna-pipe/main/figures/plot_t-umap-mitf-axl.png" width="300"/>
+  <br>
+  <small>Expression analysis of malignant cell subpopulation Mel79, in order to prepare for trajectory analysis with monocle3</small>
+</p>
+
+
 ---
 
 # Usage
