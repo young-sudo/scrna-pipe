@@ -11,8 +11,8 @@ workflow {
     raw_ch = Channel.fromPath(params.input_file)
     
     processed_ch = DOWNLOAD_AND_READ(raw_ch)
-    prepared_ch  = PREPARE_EXPRESSION(processed_ch)
-    qc_ch        = BASIC_QC(prepared_ch)
+    prepared_ch = PREPARE_EXPRESSION(processed_ch)
+    qc_ch = BASIC_QC(prepared_ch)
     
     (nonmal_ch, mal_ch) = SPLIT_MALIGNANT(qc_ch)
     nonmal_res = NONMALIGNANT_DIMREDUCE(nonmal_ch)
