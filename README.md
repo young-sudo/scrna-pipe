@@ -16,8 +16,6 @@ The dataset used in this project can be found [here](https://www.ncbi.nlm.nih.go
 
 Reference article: Tirosh et al., 2016 - Dissecting the multicellular ecosystem of metastatic melanoma by single-cell RNA-seq ([PubMed](https://pubmed.ncbi.nlm.nih.gov/27124452/))
 
-Full project rationale, methods description, results, and discussion in the **project report** in [`docs/`](https://github.com/young-sudo/scrna-pipe/tree/8818e744bab61d5d9b449b48e2d1460c981e53e0/docs)
-
 <p align="center">
   <img src="https://raw.githubusercontent.com/young-sudo/scrna-pipe/main/figures/plot_m-tsne-novf-tumor.png" width="300"/>
   <img src="https://raw.githubusercontent.com/young-sudo/scrna-pipe/main/figures/plot_nm-tsne-vf-cell.png" width="300"/>
@@ -98,7 +96,15 @@ nextflow run main.nf -profile docker --input_file data/raw/GSE72056_melanoma_sin
 
 ---
 
-# Project Overview
+# Project report
+
+Full project rationale, methods description, results, and discussion in the **project report** in [`docs/`](https://github.com/young-sudo/scrna-pipe/tree/8818e744bab61d5d9b449b48e2d1460c981e53e0/docs)
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/young-sudo/scrna-pipe/main/figures/project_report.png" width="700"/>
+</p>
+
+# Methods
 
 This repository contains a modular, reproducible workflow for analyzing melanoma scRNA-seq data, including both reanalysis of published results and extended trajectory modeling.
 
