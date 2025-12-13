@@ -67,25 +67,6 @@ nextflow run main.nf -profile docker --docker.image r-scrna-pipe:latest
 
 ## Run the entire workflow
 
-```bash
-# Docker
-nextflow run main.nf -profile docker
-
-# Singularity/Apptainer (for HPC)
-nextflow run main.nf -profile apptainer
-
-# Conda/local environment
-nextflow run main.nf -profile conda
-
-# Local execution without containers
-nextflow run main.nf -profile standard
-
-# HPC execution with slurm
-nextflow run main.nf -profile slurm
-```
-
-## Pass input parameters
-
 You can override default parameters:
 
 ```bash
@@ -93,6 +74,13 @@ nextflow run main.nf -profile docker --input_file data/raw/GSE72056_melanoma_sin
 ```
 * `--input_file` → Path to the input `.txt.gz` file
 * `--outdir` → Output directory for processed data and results
+
+Available profiles are:
+* `docker` - run with Docker containerization
+* `singularity` - run with Singularity/Apptainer (for HPC)
+* `conda` - run locally with conda environment
+* `standard` - run locally without containers
+* `slurm` - run on HPC with Slurm and conda
 
 ---
 
