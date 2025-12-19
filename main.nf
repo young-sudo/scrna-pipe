@@ -13,10 +13,11 @@ workflow {
     processed_ch = DOWNLOAD_AND_READ(raw_ch)
     prepared_ch = PREPARE_EXPRESSION(processed_ch)
     qc_ch = BASIC_QC(prepared_ch)
-    
+
     (nonmal_ch, mal_ch) = SPLIT_MALIGNANT(qc_ch)
     nonmal_res = NONMALIGNANT_DIMREDUCE(nonmal_ch)
     NONMALIGNANT_CLUSTER(nonmal_res)
+    
     mal_res = MALIGNANT_DIMREDUCE(mal_ch)
     TRAJECTORY(mal_res)
 }
