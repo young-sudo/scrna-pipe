@@ -86,7 +86,7 @@ Available profiles are:
 
 # Project report
 
-Full project rationale, methods description, results, and discussion in the **project report** in [`docs/`](https://github.com/young-sudo/scrna-pipe/tree/8818e744bab61d5d9b449b48e2d1460c981e53e0/docs)
+Full project rationale, methods description, results, and discussion can be found in the **project report** in [`docs/`](https://github.com/young-sudo/scrna-pipe/tree/8818e744bab61d5d9b449b48e2d1460c981e53e0/docs)
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/young-sudo/scrna-pipe/main/figures/project_report.jpg" width="500"/>
